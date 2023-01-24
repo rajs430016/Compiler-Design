@@ -1,0 +1,135 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<string> keys;
+vector<string> oper;
+vector<string> ident;
+vector<string> syms;
+
+vector<string> to_vector(string input)
+{
+    vector<string> temp;
+    int k=0;
+    for(int i=0;i<input.length();i++)
+    {
+        string part="";
+        if(input[i]==' ')
+        {
+            for(int j=k;j<i;j++)
+            {
+                part+=input[j];
+            }
+            k=i+1;
+            temp.push_back(part);
+        }
+    }
+    return temp;
+}
+
+int keyword_count(vector<string> parts)
+{
+    int count=0;
+    for(int i=0;i<parts.size();i++)
+    {
+        if(parts[i]=="int"||parts[i]=="float"||parts[i]=="while"||parts[i]=="for")
+        {
+            count++;
+            keys.push_back(parts[i]);   
+        }
+    }
+    return count;
+}
+
+int identifier_count(vector<string> parts)
+{
+    int count=0;
+    for(int i=0;i<parts.size();i++)
+    {
+        if(parts[i]=="a"||parts[i]=="b"||parts[i]=="c"||parts[i]=="i"||parts[i]=="j")
+        {
+            count++;
+            ident.push_back(parts[i]);
+        }
+    }
+    return count;
+}
+
+int operator_count(vector<string> parts)
+{
+    int count=0;
+    for(int i=0;i<parts.size();i++)
+    {
+        if(parts[i]=="+"||parts[i]=="++"||parts[i]=="-"||parts[i]=="--"||parts[i]=="=")
+        {
+            count++;
+            oper.push_back(parts[i]);
+        }
+    }
+    return count;
+}
+
+int separator_count(vector<string> parts)
+{
+    int count=0;
+    for(int i=0;i<parts.size();i++)
+    {
+        if(parts[i]==";"||parts[i]=="//")
+        {
+            count++;
+            syms.push_back(parts[i]);
+        }
+    }
+    return count;
+}
+
+int main()
+{
+    string input;
+    
+    cout<<"How to give input!"<<endl;
+    cout<<"1. Give proper space for each & every syntax"<<endl;
+    cout<<"2. After the input hit 'spacebar' and add a '/' symbol."<<endl;
+    cout<<"Example -> int a = b + c ; /"<<endl;
+    cout<<"Or -> for ( int i = 0 ; i < n ; i ++ ) /"<<endl;
+    cout<<endl<<"Enter proper input (or may not yield proper result) - "<<endl;
+    
+    getline(cin,input);
+    
+    cout<<endl;
+    
+    vector<string> parts;
+    parts = to_vector(input);
+    
+    int key,op,sep,id;
+    
+    key = keyword_count(parts);
+    op = operator_count(parts);
+    sep = separator_count(parts);
+    id = identifier_count(parts);
+    
+    cout<<key<<" keywords"<<endl;
+    cout<<op<<" operators"<<endl;
+    cout<<sep<<" separators"<<endl;
+    cout<<id<<" identifiers"<<endl;
+    
+    cout<<endl<<"The keywords are -> ";
+    for(int i=0;i<keys.size();i++)
+    {
+        cout<<keys[i]<<" ";
+    }
+    cout<<endl<<"The operators are -> ";
+    for(int i=0;i<oper.size();i++)
+    {
+        cout<<oper[i]<<" ";
+    }
+    cout<<endl<<"The separators are -> ";
+    for(int i=0;i<syms.size();i++)
+    {
+        cout<<syms[i]<<" ";
+    }
+    cout<<endl<<"The identifiers are -> ";
+    for(int i=0;i<ident.size();i++)
+    {
+        cout<<ident[i]<<" ";
+    }
+}
