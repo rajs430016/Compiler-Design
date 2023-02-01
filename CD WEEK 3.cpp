@@ -147,3 +147,51 @@ dfa.push_back(v);
 }
 printdfa(states,dfa);
 }
+
+
+
+
+/* OUTPUT
+Enter total number of states in NFA : 3
+Enter number of elements in alphabet : 2
+For state 0
+Enter no. of output states for input a : 1
+Enter output states :
+1
+Enter no. of output states for input b : 2
+Enter output states :
+0 2
+Enter no. of output states for input ^ : 0
+Enter output states :
+For state 1
+Enter no. of output states for input a : 1
+Enter output states :
+1
+Enter no. of output states for input b : 1
+Enter output states :
+2
+Enter no. of output states for input ^ : 1
+Enter output states :
+2
+For state 2
+Enter no. of output states for input a : 0
+Enter output states :
+Enter no. of output states for input b : 1
+Enter output states :
+0
+Enter no. of output states for input ^ : 0
+Enter output states :
+***** TRANSITION TABLE OF NFA *****
+  STATE/INPUT  |   a   |   b   |   ^   
+
+       0       | 1  | 0 2  | 
+       1       | 1  | 2  | 2 
+       2       |  | 0  | 
+
+***** TRANSITION TABLE OF DFA *****
+  STATE/INPUT  |   a   |   b   
+{ 0 }  | 1 2  | 0 2 
+{ 1 2 }  | 1 2  | 0 2 
+{ 0 2 }  | 1 2  | 0 2 
+
+*/
